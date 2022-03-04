@@ -116,7 +116,7 @@ public class ElementoGrafico{
     
     //acciones cuando el mouse esta sobre el elemento
     public void dibujarContorno(MouseEvent evt){
-        dibujo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));   
+        dibujo.setBorder(BorderFactory.createLineBorder(Color.GREEN, 1));   
     }
     public void borrarContorno(MouseEvent evt){
         dibujo.setBorder(null);
