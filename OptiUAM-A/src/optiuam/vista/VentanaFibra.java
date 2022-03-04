@@ -1,0 +1,613 @@
+
+package optiuam.vista;
+
+
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+
+import javax.swing.JOptionPane;
+
+import optiuam.controlador.Controlador;
+
+/**
+ *
+ *
+ */
+public class VentanaFibra extends javax.swing.JFrame {
+
+    private Controlador controlador;
+    private String id;
+
+    /**
+     * Creates new form VentanaFibra
+     */
+    public VentanaFibra() {
+        initComponents();
+        btn_desconectar.setIcon(new ImageIcon("iconos/ico_desconectar.png"));
+        btn_eliminar.setIcon(new ImageIcon("iconos/ico_eliminar.png"));
+        btn_cancelar.setIcon(new ImageIcon("iconos/ico_cancelar.png"));
+        btn_aplicar.setIcon(new ImageIcon("iconos/ico_aplicar.png"));
+        // la primera vez que se crea la ventana no se muestra el boton eliminar
+        btn_eliminar.setVisible(false);
+
+        bgroup_window.add(rbutton_1310);
+        bgroup_window.add(rbutton_1550);
+        bgroup_tipo.add(rbutton_mm);
+        bgroup_tipo.add(rbutton_smf);
+        bgroup_tipo.add(rbutton_otro);
+        bgroup_modo.add(rbutton_mono);
+        bgroup_modo.add(rbutton_multi);
+        rbutton_otro.setSelected(true);
+        rbutton_1310.setSelected(true);
+        rbutton_mono.setSelected(true);
+        lbl_conectarA.setVisible(false);
+        cbox_conexion.setVisible(false);
+        separador.setVisible(false);
+        btn_desconectar.setVisible(false);
+
+    }
+    
+    //metodo para mostrar los elementos disponibles para conectar con la fibra
+    public void setElementos(ArrayList<String> elementos,String elemento_selecionado){
+        cbox_conexion.removeAllItems();
+        cbox_conexion.addItem(elemento_selecionado);
+        for (int i = 0 ; i < elementos.size(); i++)
+            cbox_conexion.addItem(elementos.get(i));
+        if(elemento_selecionado.compareTo("")!=0)// si no esta conectado , no se muestra el boton desconectar
+            btn_desconectar.setVisible(true);
+    }
+
+    public void setValores(int window, int modo, int tipo, double longitud,double atenuacion,double dispercion, String id) {
+        btn_eliminar.setVisible(true);
+        btn_aplicar.setText("Aplicar");
+        this.id = id;
+
+        if (modo == 1) // multimodo
+        {
+            rbutton_multi.setSelected(true);
+        }
+        
+        if (window == 1550) // 1310 nm
+        {
+            rbutton_1550.setSelected(true);
+        }
+        if (tipo == 1) // mm50
+        {
+            txtf_dispersion.setEditable(false);
+            txtf_atenuacion.setEditable(false);
+            rbutton_1550.setEnabled(false);
+            rbutton_mono.setEnabled(false);
+            rbutton_mm.setSelected(true);
+        }
+        if(tipo ==0){ // smf28
+            txtf_dispersion.setEditable(false);
+            txtf_atenuacion.setEditable(false);
+            rbutton_multi.setEnabled(false);
+            rbutton_smf.setSelected(true);
+        }
+        if(tipo == 2){} //otro
+        
+            
+        txtf_longitud.setText(String.valueOf(longitud));
+        txtf_atenuacion.setText(String.valueOf(atenuacion));
+        txtf_dispersion.setText(String.valueOf(dispercion));
+        
+        lbl_conectarA.setVisible(true);
+        cbox_conexion.setVisible(true);
+        separador.setVisible(true); 
+    }
+    
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    //---- metodos para obtener y dar valores de las propiedades de la fibra---//
+    //------------------------------------------------------------///
+    private boolean validarValores(int window, int tipo) {
+        if(tipo == 2){
+            if (txtf_longitud.getText().compareTo("") == 0 || !txtf_longitud.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(null, "Valor de la longitud Km invalido", "error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (txtf_atenuacion.getText().compareTo("") == 0 || !txtf_atenuacion.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(null, "Valor de la atenuación invalido", "error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (txtf_dispersion.getText().compareTo("") == 0 || !txtf_dispersion.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(null, "Valor de la dispersión invalido", "error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else
+            return true;
+        }
+        else{
+        if (txtf_longitud.getText().compareTo("") == 0 || !txtf_longitud.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(null, "Valor de la longitud Km invalido", "error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }  
+        else 
+            return true;
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        bgroup_window = new javax.swing.ButtonGroup();
+        bgroup_modo = new javax.swing.ButtonGroup();
+        bgroup_tipo = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        txtf_longitud = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        btn_eliminar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
+        btn_aplicar = new javax.swing.JButton();
+        separador = new javax.swing.JSeparator();
+        lbl_conectarA = new javax.swing.JLabel();
+        cbox_conexion = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        rbutton_mono = new javax.swing.JRadioButton();
+        rbutton_multi = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        rbutton_smf = new javax.swing.JRadioButton();
+        rbutton_mm = new javax.swing.JRadioButton();
+        rbutton_1310 = new javax.swing.JRadioButton();
+        rbutton_1550 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        lbl_dispersion = new javax.swing.JLabel();
+        txtf_dispersion = new javax.swing.JTextField();
+        lbl_unidades = new javax.swing.JLabel();
+        rbutton_otro = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtf_atenuacion = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btn_desconectar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Configuración de la fibra óptica");
+
+        jLabel2.setText("Longitud del cable ");
+
+        jLabel4.setText("Longitud de onda");
+
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+
+        btn_aplicar.setText("Crear");
+        btn_aplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aplicarActionPerformed(evt);
+            }
+        });
+
+        separador.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        lbl_conectarA.setText("Conectar a...");
+
+        cbox_conexion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setText("Modo");
+
+        rbutton_mono.setText("monomodo");
+        rbutton_mono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_monoActionPerformed(evt);
+            }
+        });
+
+        rbutton_multi.setText("multimodo");
+        rbutton_multi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_multiActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Tipo");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        rbutton_smf.setText("smf-28");
+        rbutton_smf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_smfActionPerformed(evt);
+            }
+        });
+
+        rbutton_mm.setText("mm50");
+        rbutton_mm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_mmActionPerformed(evt);
+            }
+        });
+
+        rbutton_1310.setText("1310 nm");
+        rbutton_1310.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_1310ActionPerformed(evt);
+            }
+        });
+
+        rbutton_1550.setText("1550 nm");
+        rbutton_1550.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_1550ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Km");
+
+        lbl_dispersion.setText("Dispersión");
+
+        lbl_unidades.setText("ps/(nm*km)");
+
+        rbutton_otro.setText("otro");
+        rbutton_otro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbutton_otroActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Atenuación");
+
+        jLabel9.setText("dB/Km");
+
+        btn_desconectar.setText("Desconectar");
+        btn_desconectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_desconectarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(22, 22, 22)
+                                .addComponent(rbutton_mono)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbutton_multi)
+                                .addGap(27, 27, 27))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(rbutton_smf)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbutton_mm)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbutton_otro))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbutton_1310)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbutton_1550))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtf_atenuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtf_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(lbl_dispersion)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtf_dispersion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbl_unidades)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel9))))
+                                .addGap(8, 8, 8)))
+                        .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_desconectar)
+                            .addComponent(lbl_conectarA)
+                            .addComponent(cbox_conexion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_eliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_aplicar)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_conectarA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbox_conexion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_desconectar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(rbutton_smf)
+                                    .addComponent(rbutton_mm)
+                                    .addComponent(rbutton_otro))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(rbutton_mono)
+                                    .addComponent(rbutton_multi))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(rbutton_1310)
+                                    .addComponent(rbutton_1550))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtf_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))
+                            .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtf_atenuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_dispersion)
+                            .addComponent(txtf_dispersion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_unidades))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_eliminar)
+                            .addComponent(btn_cancelar)
+                            .addComponent(btn_aplicar))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    //este metodo se ejecuta al presionar el boton aplicar o crear
+    private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
+        int btn_window = 1310;
+        int btn_tipo = 0;// 0 smf28 1 | 1 mm50 | 2 otro
+        int btn_modo = 0;// 0 mono | 1 multimodo
+
+        if (!rbutton_1310.isSelected()) {
+            btn_window = 1550;
+        }
+        if (!rbutton_mono.isSelected()) {
+            btn_modo = 1;
+        }
+        if (!rbutton_smf.isSelected() && !rbutton_otro.isSelected()) {
+            btn_tipo = 1;
+        }
+        if (!rbutton_smf.isSelected() && !rbutton_mm.isSelected()) {
+            btn_tipo = 2;
+        }
+
+        if (validarValores(btn_window, btn_tipo)) {
+            if (btn_aplicar.getText().compareTo("Crear") == 0) {
+                controlador.crearFibra(btn_window, btn_modo, btn_tipo,
+                        Double.parseDouble(txtf_longitud.getText()),Double.parseDouble(txtf_atenuacion.getText()),
+                        Double.parseDouble(txtf_dispersion.getText()));
+                JOptionPane.showMessageDialog(null, "Fibra creada", "éxito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                controlador.modificarFibra(btn_window, btn_modo, btn_tipo,
+                        Double.parseDouble(txtf_longitud.getText()),Double.parseDouble(txtf_atenuacion.getText()),
+                        Double.parseDouble(txtf_dispersion.getText()), id,cbox_conexion.getSelectedItem().toString());
+                JOptionPane.showMessageDialog(null, "Fibra modificada", "éxito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_btn_aplicarActionPerformed
+    //para la fibra multimodo no esta disponible 1550nm
+    private void rbutton_multiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_multiActionPerformed
+        if (!rbutton_otro.isSelected()) {
+            rbutton_mm.setSelected(true);
+        }
+    }//GEN-LAST:event_rbutton_multiActionPerformed
+    //para la fibra monomodo si esta disponible 1550nm
+    private void rbutton_monoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_monoActionPerformed
+        if (!rbutton_otro.isSelected()) {
+            rbutton_smf.setSelected(true);
+        }
+    }//GEN-LAST:event_rbutton_monoActionPerformed
+
+    private void rbutton_1310ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_1310ActionPerformed
+        if (!rbutton_otro.isSelected()) {
+            if (rbutton_mono.isSelected()) { // monomodo 1310
+                txtf_atenuacion.setText("0.32");
+                txtf_atenuacion.setEditable(false);
+                txtf_dispersion.setText("0");
+                txtf_dispersion.setEditable(false);
+            } else { // multimodod 1310
+                txtf_atenuacion.setText("0.36");
+                txtf_atenuacion.setEditable(false);
+                txtf_dispersion.setText("3.5");
+                txtf_dispersion.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_rbutton_1310ActionPerformed
+
+    private void rbutton_1550ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_1550ActionPerformed
+        if (!rbutton_otro.isSelected()) {
+            if (rbutton_mono.isSelected()) { // monomodo 1510
+                txtf_atenuacion.setText("0.18");
+                txtf_atenuacion.setEditable(false);
+                txtf_dispersion.setText("18");
+                txtf_dispersion.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_rbutton_1550ActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        controlador.eliminarElemento(id);
+        JOptionPane.showMessageDialog(null, "Fibra eliminada", "éxito", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void rbutton_mmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_mmActionPerformed
+        if (!rbutton_otro.isSelected()) {
+            rbutton_1310.setSelected(true);
+            rbutton_1550.setEnabled(false);
+            rbutton_multi.setSelected(true);
+            rbutton_multi.setEnabled(true);
+            rbutton_mono.setEnabled(false);
+            txtf_atenuacion.setText("0.36");
+            txtf_atenuacion.setEditable(false);
+            txtf_dispersion.setText("3.5");
+            txtf_dispersion.setEditable(false);
+        }
+    }//GEN-LAST:event_rbutton_mmActionPerformed
+
+    private void rbutton_smfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_smfActionPerformed
+        if (!rbutton_otro.isSelected()) {
+            rbutton_1550.setEnabled(true);
+            rbutton_mono.setSelected(true);
+            rbutton_mono.setEnabled(true);
+            rbutton_multi.setEnabled(false);
+            if (rbutton_1310.isSelected()) { // monomodo 1310
+                txtf_atenuacion.setText("0.32");
+                txtf_atenuacion.setEditable(false);
+                txtf_dispersion.setText("0");
+                txtf_dispersion.setEditable(false);
+            } else { // monomodo 1550
+                txtf_atenuacion.setText("0.18");
+                txtf_atenuacion.setEditable(false);
+                txtf_dispersion.setText("18");
+                txtf_dispersion.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_rbutton_smfActionPerformed
+
+    private void rbutton_otroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_otroActionPerformed
+        rbutton_multi.setEnabled(true);
+        rbutton_mono.setEnabled(true);
+        rbutton_1310.setEnabled(true);
+        rbutton_1550.setEnabled(true);
+        txtf_dispersion.setText("");
+        txtf_dispersion.setEditable(true);
+        txtf_atenuacion.setText("");
+        txtf_atenuacion.setEditable(true);
+    }//GEN-LAST:event_rbutton_otroActionPerformed
+    
+    private void btn_desconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desconectarActionPerformed
+        if(cbox_conexion.getSelectedItem().toString().compareTo("")!=0){
+            controlador.desconectarElemento(id);
+            setElementos(controlador.elementosDisponibles("fibra", id), "");
+            JOptionPane.showMessageDialog(null,"componente desconectado","éxito",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_desconectarActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaFibra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaFibra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaFibra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaFibra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaFibra().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgroup_modo;
+    private javax.swing.ButtonGroup bgroup_tipo;
+    private javax.swing.ButtonGroup bgroup_window;
+    private javax.swing.JButton btn_aplicar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_desconectar;
+    private javax.swing.JButton btn_eliminar;
+    private javax.swing.JComboBox<String> cbox_conexion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbl_conectarA;
+    private javax.swing.JLabel lbl_dispersion;
+    private javax.swing.JLabel lbl_unidades;
+    private javax.swing.JRadioButton rbutton_1310;
+    private javax.swing.JRadioButton rbutton_1550;
+    private javax.swing.JRadioButton rbutton_mm;
+    private javax.swing.JRadioButton rbutton_mono;
+    private javax.swing.JRadioButton rbutton_multi;
+    private javax.swing.JRadioButton rbutton_otro;
+    private javax.swing.JRadioButton rbutton_smf;
+    private javax.swing.JSeparator separador;
+    private javax.swing.JTextField txtf_atenuacion;
+    private javax.swing.JTextField txtf_dispersion;
+    private javax.swing.JTextField txtf_longitud;
+    // End of variables declaration//GEN-END:variables
+
+}
