@@ -10,8 +10,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import optiuam.controlador.Controlador;
 
 /**
@@ -22,16 +24,21 @@ import optiuam.controlador.Controlador;
 public class ElementoGrafico{
     private Controlador controlador; 
     private JLabel dibujo; //etiqueta para colocar el elemento
+    
+                                    private JLabel title; //etiqueta del elemento.
+                                    private JPopupMenu upMenu; //Menu desplegable
+                                    
     private JPanel panel; // panel para dibujar el conector
     private String id; // identificador del dibujo, el mismo que el de el componente
     private String componente; // identificador del componente
     
-    public ElementoGrafico(JPanel panel, String id, String componente,Controlador controlador) {
+    public ElementoGrafico(JPanel panel, String id, String componente,Controlador controlador,String title) {
         this.controlador= controlador;
         this.componente=componente;
         this.panel = panel;
         this.id = id;
         this.dibujo = new JLabel();
+        this.title= new JLabel();
     }
     
     public void dibujarComponente(){
@@ -39,39 +46,59 @@ public class ElementoGrafico{
         if (componente.compareTo("splitter64")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_splitter64.png"));
             dibujo.setBounds(10,20,100,75);
+            title.setText(id);
+            title.setBounds(15,45,200,48);
+            
         }
         else if(componente.compareTo("splitter128")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_splitter128.png"));
             dibujo.setBounds(10,20,150,113);
+            title.setText(id);
+            title.setBounds(15,45,200,48);
         }
         else if(componente.compareTo("splitter32")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_splitter32.png"));
             dibujo.setBounds(10,20,75,56);
+            title.setText(id);
+            title.setBounds(15,45,200,48);
         }
         else if(componente.compareTo("splitter16")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_splitter16.png"));
             dibujo.setBounds(10,20,51,38);
+            title.setText(id);
+            title.setBounds(15,45,200,48);
         }
         else if(componente.compareTo("fibra")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_fibra.png"));
             dibujo.setBounds(10,20,128,11);
+            title.setText(id);
+            title.setBounds(20,20,200,48);
         }
         else if(componente.compareTo("conector")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_conectorR.png"));
             dibujo.setBounds(10,20,55,13);
+            title.setText(id);
+            title.setBounds(20,20,200,48);
         }
         else if(componente.compareTo("empalme")==0){
             dibujo.setIcon(new ImageIcon("iconos/dibujo_empalme.png"));
             dibujo.setBounds(10,20,48,15);
+            title.setText(id);
+            title.setBounds(20,20,200,48);
         }
         
         else{
             dibujo.setIcon(new ImageIcon("iconos/dibujo_"+componente+".png"));
             dibujo.setBounds(15,15,43,48);
+            title.setText(id);
+            title.setBounds(15,45,200,48);
+            
         }
         //dibujo.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
         panel.add(dibujo);
         dibujo.setVisible(true);
+        panel.add(title);
+        title.setVisible(true);
         
         MouseAdapter ml =new MouseAdapter() {
             int x_pressed = 0;
@@ -93,16 +120,37 @@ public class ElementoGrafico{
             
             @Override
             public void mouseDragged(MouseEvent me) {
-       
-                    dibujo.setLocation(me.getXOnScreen()-x_pressed, me.getYOnScreen()- y_pressed-150);
+                dibujo.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-230);
+                if(componente.compareTo("fibra")==0){
+                    title.setLocation(me.getXOnScreen()-x_pressed-320, me.getYOnScreen()- y_pressed-230);
+                }else if(componente.compareTo("conector")==0){
+                    title.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-230);
+                }else if(componente.compareTo("empalme")==0){
+                    title.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-230);
+                }else{
+                    title.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-200);
+                }
+                
                 //dibujo.repaint();
                 //panel.repaint();
             }
 
             @Override
             public void mouseClicked(MouseEvent me) {
-                if(me.getButton()==3){//click derecho
+                
+                if(me.getButton()==1){//click izquierdo
                         controlador.mostrarVentanaElemento(id);
+                        dibujarContorno(me);
+                }
+                if(me.getButton()==3){//click derecho
+                        upMenu= new JPopupMenu("Opciones.");
+                        JMenuItem duplicar =new JMenuItem("Duplicar");
+                        upMenu.add(duplicar);
+                        upMenu.addSeparator();
+                        upMenu.add(new JMenuItem(" Girar. "));
+                        upMenu.show(me.getComponent(), me.getX(), me.getY());
+                        dibujarContorno(me);
+                       
                 }
             }
            
@@ -125,7 +173,9 @@ public class ElementoGrafico{
 
     public void borrarDibujo(){
         dibujo.setVisible(false);
+        title.setVisible(false);
         panel.remove(dibujo);
+        panel.remove(title);
     }
 
     public String getId() {
@@ -142,10 +192,12 @@ public class ElementoGrafico{
     
     public void setX(int x){
         dibujo.setLocation(x, dibujo.getY());
+        title.setLocation(x, title.getY()-10);
     }
     
     public void setY(int y){
         dibujo.setLocation(dibujo.getX(),y);
+        title.setLocation(title.getX(),y);
     }
     
     public void girarConector(char orientaion){
