@@ -38,7 +38,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /** Creates new form GeneralGUI */
     public VentanaPrincipal() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocation(-10, 0);
+        //this.setLocationRelativeTo(null);
         pnl_trabajo.setFondo("iconos/fondo.png");
         pnl_trabajo.updateUI();
         /*JLabel fondo_aux = new JLabel(new ImageIcon("iconos/fondo.png"));
@@ -117,8 +118,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("OptiUAM");
         setBackground(new java.awt.Color(153, 255, 255));
         setForeground(new java.awt.Color(0, 153, 51));
-        setPreferredSize(new java.awt.Dimension(1439, 860));
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -126,7 +125,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         pnl_componentes.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_componentes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Componentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 0, 51))); // NOI18N
+        pnl_componentes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Componentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 0, 51))); // NOI18N
 
         btn_fibra.setToolTipText("Optical Fiber");
         btn_fibra.setBorder(null);
@@ -273,7 +272,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         pnl_trabajo.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_trabajo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Area de trabajo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 0, 51))); // NOI18N
+        pnl_trabajo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Area de trabajo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 0, 51))); // NOI18N
         pnl_trabajo.setOpaque(false);
 
         javax.swing.GroupLayout pnl_trabajoLayout = new javax.swing.GroupLayout(pnl_trabajo);
