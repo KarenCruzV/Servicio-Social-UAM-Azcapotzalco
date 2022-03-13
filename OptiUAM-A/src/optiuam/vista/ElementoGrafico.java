@@ -120,15 +120,15 @@ public class ElementoGrafico{
             
             @Override
             public void mouseDragged(MouseEvent me) {
-                dibujo.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-230);
+                dibujo.setLocation(me.getXOnScreen()-x_pressed, me.getYOnScreen()- y_pressed-150);
                 if(componente.compareTo("fibra")==0){
-                    title.setLocation(me.getXOnScreen()-x_pressed-320, me.getYOnScreen()- y_pressed-230);
+                    title.setLocation(me.getXOnScreen()-x_pressed+20, me.getYOnScreen()- y_pressed-150);
                 }else if(componente.compareTo("conector")==0){
-                    title.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-230);
+                    title.setLocation(me.getXOnScreen()-x_pressed+10, me.getYOnScreen()- y_pressed-150);
                 }else if(componente.compareTo("empalme")==0){
-                    title.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-230);
+                    title.setLocation(me.getXOnScreen()-x_pressed+10, me.getYOnScreen()- y_pressed-150);
                 }else{
-                    title.setLocation(me.getXOnScreen()-x_pressed-340, me.getYOnScreen()- y_pressed-200);
+                    title.setLocation(me.getXOnScreen()-x_pressed, me.getYOnScreen()- y_pressed-120);
                 }
                 
                 //dibujo.repaint();
