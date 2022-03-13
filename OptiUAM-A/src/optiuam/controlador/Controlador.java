@@ -51,7 +51,7 @@ public class Controlador {
     public void crearFibra(int window, int modo, int tipo, double longitud_km, double atenuacion, double dispersion) {
         Fibra fibra_aux = new Fibra(window, modo, tipo, longitud_km, atenuacion, dispersion, "fibra" + String.valueOf(contadorElemento));
         elementos.add(fibra_aux);
-        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "fibra" + String.valueOf(contadorElemento), "fibra", this);
+        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "fibra" + String.valueOf(contadorElemento), "fibra", this,"fibra");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -80,7 +80,8 @@ public class Controlador {
     public void crearConector(int window, int modo, double perdida) {
         Conector conector = new Conector(window, modo, perdida, "conector" + String.valueOf(contadorElemento));
         elementos.add(conector);
-        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "conector" + String.valueOf(contadorElemento), "conector", this);
+        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "conector" + 
+                String.valueOf(contadorElemento), "conector", this,"conector");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -103,7 +104,8 @@ public class Controlador {
     public void crearEmpalme(int tipo, int window, double perdida) {
         Empalme empalme = new Empalme(tipo, perdida, window, "empalme" + String.valueOf(contadorElemento));
         elementos.add(empalme);
-        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "empalme" + String.valueOf(contadorElemento), "empalme", this);
+        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "empalme" + 
+                String.valueOf(contadorElemento), "empalme", this,"empalme");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -127,7 +129,8 @@ public class Controlador {
         Fuente fuente = new Fuente(tipo, potencia, anchura, velocidad, window, "fuente" + String.valueOf(contadorElemento));
         
         elementos.add(fuente);
-        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "fuente" + String.valueOf(contadorElemento), "fuente", this);
+        manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), "fuente" + 
+                String.valueOf(contadorElemento), "fuente", this,"fuente");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -170,7 +173,7 @@ public class Controlador {
         }
 
         manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(),
-                "splitter" + String.valueOf(contadorElemento), aux, this);
+                "splitter" + String.valueOf(contadorElemento), aux, this,"splitter");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -213,7 +216,7 @@ public class Controlador {
         MedidorEspectro espectro = new MedidorEspectro("espectro" + String.valueOf(contadorElemento));
         elementos.add(espectro);
         manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(),
-                "espectro" + String.valueOf(contadorElemento), "espectro", this);
+                "espectro" + String.valueOf(contadorElemento), "espectro", this,"espectro");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -258,7 +261,7 @@ public class Controlador {
         MedidorPotencia potencia = new MedidorPotencia("potencia" + String.valueOf(contadorElemento));
         elementos.add(potencia);
         manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(),
-                "potencia" + String.valueOf(contadorElemento), "potencia", this);
+                "potencia" + String.valueOf(contadorElemento), "potencia", this,"potencia");
         dibujos.add(manejadorElementos);
         manejadorElementos.dibujarComponente();
         contadorElemento++;
@@ -769,7 +772,7 @@ public class Controlador {
                             conector.setOrientacion(partes[6].charAt(0));
                             elementos.add(conector);
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id, "conector", this);
+                                                    id, "conector", this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[7]));
                             manejadorElementos.setY(Integer.valueOf(partes[8]));
@@ -787,7 +790,7 @@ public class Controlador {
                             empalme.setLongitud_onda(Integer.valueOf(partes[5]));
                             elementos.add(empalme);
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id, "empalme", this);
+                                                    id, "empalme", this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[6]));
                             manejadorElementos.setY(Integer.valueOf(partes[7]));
@@ -821,7 +824,7 @@ public class Controlador {
                             aux = "splitter128";
                             }
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id,aux, this);
+                                                    id,aux, this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[6]));
                             manejadorElementos.setY(Integer.valueOf(partes[7]));
@@ -855,7 +858,7 @@ public class Controlador {
                             
                             elementos.add(fibra);
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id, "fibra", this);
+                                                    id, "fibra", this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[9]));
                             manejadorElementos.setY(Integer.valueOf(partes[10]));
@@ -874,7 +877,7 @@ public class Controlador {
                             fuente.setPulso(Float.parseFloat(partes[8]),Float.parseFloat(partes[9]),Float.parseFloat(partes[10]),Float.parseFloat(partes[11]),Float.parseFloat(partes[12]));
                             elementos.add(fuente);
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id, "fuente", this);
+                                                    id, "fuente", this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[13]));
                             manejadorElementos.setY(Integer.valueOf(partes[14]));
@@ -888,7 +891,7 @@ public class Controlador {
                             potencia.setSensibilidad(Double.valueOf(partes[3]));
                             elementos.add(potencia);
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id, "potencia", this);
+                                                    id, "potencia", this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[4]));
                             manejadorElementos.setY(Integer.valueOf(partes[5]));
@@ -902,7 +905,7 @@ public class Controlador {
                             espectro.setElementoConectado(partes[2]);
                             elementos.add(espectro);
                             manejadorElementos = new ElementoGrafico(ventana_principal.getPnl_trabajo(), 
-                                                    id, "espectro", this);
+                                                    id, "espectro", this,id);
                             manejadorElementos.dibujarComponente();
                             manejadorElementos.setX(Integer.valueOf(partes[3]));
                             manejadorElementos.setY(Integer.valueOf(partes[4]));
