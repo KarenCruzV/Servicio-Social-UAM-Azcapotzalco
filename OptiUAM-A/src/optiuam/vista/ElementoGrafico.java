@@ -118,6 +118,7 @@ public class ElementoGrafico{
                 y_pressed = me.getY();
             }
             
+            //Localización de elementos
             @Override
             public void mouseDragged(MouseEvent me) {
                 dibujo.setLocation(me.getXOnScreen()-x_pressed, me.getYOnScreen()- y_pressed-150);
