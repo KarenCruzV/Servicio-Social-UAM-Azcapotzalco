@@ -117,7 +117,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("OptiUAM");
         setBackground(new java.awt.Color(153, 255, 255));
         setForeground(new java.awt.Color(0, 153, 51));
-        setPreferredSize(getMaximumSize());
+        setPreferredSize(new java.awt.Dimension(1440, 860));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
