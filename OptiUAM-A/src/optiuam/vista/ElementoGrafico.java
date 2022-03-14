@@ -144,13 +144,16 @@ public class ElementoGrafico{
                         dibujarContorno(me);
                 }
                 if(me.getButton()==3){//click derecho
-                        upMenu= new JPopupMenu("Opciones.");
+                        /*upMenu= new JPopupMenu("Opciones.");
                         JMenuItem duplicar =new JMenuItem("Duplicar");
                         upMenu.add(duplicar);
                         upMenu.addSeparator();
                         upMenu.add(new JMenuItem(" Girar. "));
                         upMenu.show(me.getComponent(), me.getX(), me.getY());
-                        dibujarContorno(me);
+                        dibujarContorno(me);*/
+                        MenuEmergente menu = new MenuEmergente();
+                        menu.setVisible(true);
+                        menu.setLocation(me.getXOnScreen()-x_pressed, me.getYOnScreen()- y_pressed-120);
                        
                 }
             }
