@@ -151,10 +151,12 @@ public class ElementoGrafico{
                         upMenu.add(new JMenuItem(" Girar. "));
                         upMenu.show(me.getComponent(), me.getX(), me.getY());
                         dibujarContorno(me);*/
+                        ElementoGrafico ele= new ElementoGrafico(panel,id,componente,controlador,title.toString());
                         MenuEmergente menu = new MenuEmergente();
                         menu.setVisible(true);
-                        menu.setLocation(me.getXOnScreen()-x_pressed, me.getYOnScreen()- y_pressed-120);
-                       
+                        menu.setLocation(me.getXOnScreen()-x_pressed+20, me.getYOnScreen()- y_pressed-50);
+                        menu.setOpacity(0.8f);
+                       menu.setControlador(ele);
                 }
             }
            
@@ -211,4 +213,53 @@ public class ElementoGrafico{
            //dibujo.updateUI();
            //panel.updateUI();
     }
+
+    public Controlador getControlador() {
+        return controlador;
+    }
+
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    public JLabel getDibujo() {
+        return dibujo;
+    }
+
+    public void setDibujo(JLabel dibujo) {
+        this.dibujo = dibujo;
+    }
+
+    public JLabel getTitle() {
+        return title;
+    }
+
+    public void setTitle(JLabel title) {
+        this.title = title;
+    }
+
+    public JPopupMenu getUpMenu() {
+        return upMenu;
+    }
+
+    public void setUpMenu(JPopupMenu upMenu) {
+        this.upMenu = upMenu;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public String getComponente() {
+        return componente;
+    }
+
+    public void setComponente(String componente) {
+        this.componente = componente;
+    }
+    
 }
