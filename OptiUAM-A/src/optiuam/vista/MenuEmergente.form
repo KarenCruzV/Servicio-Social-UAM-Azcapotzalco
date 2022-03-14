@@ -50,11 +50,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Duplicar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDuplicarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonGirar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Girar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGirarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

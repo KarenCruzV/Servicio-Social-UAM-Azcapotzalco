@@ -33,8 +33,18 @@ public class MenuEmergente extends javax.swing.JFrame {
         setResizable(false);
 
         jButtonDuplicar.setText("Duplicar");
+        jButtonDuplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDuplicarActionPerformed(evt);
+            }
+        });
 
         jButtonGirar.setText("Girar");
+        jButtonGirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGirarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,6 +69,16 @@ public class MenuEmergente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonDuplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDuplicarActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Duplicar");
+    }//GEN-LAST:event_jButtonDuplicarActionPerformed
+
+    private void jButtonGirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGirarActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Girar");
+    }//GEN-LAST:event_jButtonGirarActionPerformed
 
     /**
      * @param args the command line arguments
