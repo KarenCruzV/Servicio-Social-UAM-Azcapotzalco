@@ -666,6 +666,34 @@ public class Controlador {
         }
         aux.setOrientacion(orientacion);
     }
+    public void girarPotencia(String id){
+        MedidorPotencia aux = (MedidorPotencia) obtenerElemento(id);
+        char orientacion= aux.getOrientacion();
+        if(orientacion=='R')
+            orientacion='L';
+        else
+            orientacion='R';
+        for(int i=0;i < dibujos.size();i++){
+            if(dibujos.get(i).getId().compareTo(id)==0){
+                dibujos.get(i).girarEspectro(orientacion);
+            }
+        }
+        aux.setOrientacion(orientacion);
+    }
+    public void girarFuente(String id){
+        Fuente aux = (Fuente) obtenerElemento(id);
+        char orientacion= aux.getOrientacion();
+        if(orientacion=='R')
+            orientacion='L';
+        else
+            orientacion='R';
+        for(int i=0;i < dibujos.size();i++){
+            if(dibujos.get(i).getId().compareTo(id)==0){
+                dibujos.get(i).girarEspectro(orientacion);
+            }
+        }
+        aux.setOrientacion(orientacion);
+    }
     
     //Metodo para crear un archivo con los elementos creados en la maqueta.
     //crea un archivo de texto plano con extension .opt
