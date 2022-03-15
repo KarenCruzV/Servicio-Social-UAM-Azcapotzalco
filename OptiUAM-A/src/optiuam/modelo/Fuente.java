@@ -19,6 +19,7 @@ public class Fuente extends Componente {
     private float W0=0; // frecuencia
     private float T0=0; // anchura
     private float M=0;// gaussiano o supergaussiano
+    private char orientacion ='R';
 
     public Fuente(int tipo, double potencia, double anchura, double velocidad, int longitud_onda,String id) {
         this.tipo = tipo;
@@ -165,6 +166,14 @@ public class Fuente extends Componente {
     @Override
     public String toString() {
         return super.toString()+","+tipo+","+ potencia +","+anchura+","+velocidad+","+longitud_onda+","+A0+","+T0+","+W0+","+C+","+M;
+    }
+
+    public char getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(char orientacion) {
+        this.orientacion = orientacion;
     }
 
     
