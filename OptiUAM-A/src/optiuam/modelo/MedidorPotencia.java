@@ -8,6 +8,7 @@ import java.util.ArrayList;
  *
  */
 public class MedidorPotencia extends Componente{
+    private char orientacion ='R';
     private Double sensibilidad=0.0;
     
     public MedidorPotencia(String id) {
@@ -152,6 +153,14 @@ public class MedidorPotencia extends Componente{
 
     public void setSensibilidad(Double sensibilidad) {
         this.sensibilidad = sensibilidad;
+    }
+
+    public char getOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(char orientacion) {
+        this.orientacion = orientacion;
     }
     
     
