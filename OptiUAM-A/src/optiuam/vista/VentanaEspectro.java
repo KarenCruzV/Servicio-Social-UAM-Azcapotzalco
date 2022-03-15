@@ -249,6 +249,7 @@ public class VentanaEspectro extends javax.swing.JFrame {
     private void jGirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGirarActionPerformed
         // TODO add your handling code here:
         controlador.girarEspectro(id);
+        
     }//GEN-LAST:event_jGirarActionPerformed
     
     
