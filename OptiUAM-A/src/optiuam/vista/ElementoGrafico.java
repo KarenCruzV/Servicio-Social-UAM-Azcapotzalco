@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import optiuam.controlador.Controlador;
@@ -79,14 +80,14 @@ public class ElementoGrafico{
             title.setBounds(20,20,200,48);
         }
         else if(componente.compareTo("empalme")==0){
-            dibujo.setIcon(new ImageIcon("iconos/dibujo_empalme.png"));
+            dibujo.setIcon(new ImageIcon("iconos/dibujo_empalmeR.png"));
             dibujo.setBounds(10,20,48,15);
             title.setText(id);
             title.setBounds(20,20,200,48);
         }
         
         else{
-            dibujo.setIcon(new ImageIcon("iconos/dibujo_"+componente+".png"));
+            dibujo.setIcon(new ImageIcon("iconos/dibujo_"+componente+"R.png"));
             dibujo.setBounds(15,15,43,48);
             title.setText(id);
             title.setBounds(15,45,200,48);
@@ -151,10 +152,11 @@ public class ElementoGrafico{
                         dibujarContorno(me);*/
                         ElementoGrafico ele= new ElementoGrafico(panel,id,componente,controlador,title.toString());
                         MenuEmergente menu = new MenuEmergente();
+                        menu.setControlador(ele);
                         menu.setVisible(true);
                         menu.setLocation(me.getXOnScreen()-x_pressed+20, me.getYOnScreen()- y_pressed-50);
                         menu.setOpacity(0.8f);
-                       menu.setControlador(ele);
+                       
                 }
             }
            
@@ -174,7 +176,28 @@ public class ElementoGrafico{
         dibujo.setBorder(null);
     }
     ///---------------------------------//
-
+    public void eliminarEle(){
+        borrarDibujo();
+        controlador.eliminarElemento(id);
+        panel.updateUI();
+    }
+    public void girarXd(){
+        if(componente.compareTo("conector")==0){
+            controlador.girarConector(id);
+        }
+        if(componente.compareTo("espectro")==0){
+            controlador.girarEspectro(id);
+        }
+        if(componente.compareTo("fuente")==0){
+            controlador.girarFuente(id);
+        }
+        if(componente.compareTo("potencia")==0){
+            controlador.girarPotencia(id);
+        }
+        
+        
+        panel.updateUI();
+    }
     public void borrarDibujo(){
         dibujo.setVisible(false);
         title.setVisible(false);
@@ -215,7 +238,21 @@ public class ElementoGrafico{
     public void girarEspectro(char orientaion){
         Point aux = dibujo.getLocation();
         dibujo.setIcon(new ImageIcon("iconos/dibujo_espectro"+orientaion+".png"));
-            dibujo.setBounds(aux.x,aux.y,95,53);
+            dibujo.setBounds(aux.x,aux.y,43,48);
+           //dibujo.updateUI();15,15,43,48
+           //panel.updateUI();
+    }
+    public void girarPotencia(char orientaion){
+        Point aux = dibujo.getLocation();
+        dibujo.setIcon(new ImageIcon("iconos/dibujo_potencia"+orientaion+".png"));
+            dibujo.setBounds(aux.x,aux.y,43,48);
+           //dibujo.updateUI();
+           //panel.updateUI();
+    }
+    public void girarFuente(char orientaion){
+        Point aux = dibujo.getLocation();
+        dibujo.setIcon(new ImageIcon("iconos/dibujo_fuente"+orientaion+".png"));
+            dibujo.setBounds(aux.x,aux.y,43,48);
            //dibujo.updateUI();
            //panel.updateUI();
     }
