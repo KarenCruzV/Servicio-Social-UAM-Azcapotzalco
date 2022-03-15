@@ -5,11 +5,9 @@
  */
 package optiuam.vista;
 
-import java.awt.Panel;
-import java.io.Serializable;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import optiuam.controlador.Controlador;
-import optiuam.modelo.Componente;
 
 /**
  *
@@ -28,6 +26,13 @@ public class MenuEmergente extends javax.swing.JFrame{
         initComponents();
     }
     
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    public void setValores(String id) {
+        this.id = id;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,6 +46,7 @@ public class MenuEmergente extends javax.swing.JFrame{
         jButtonDuplicar = new javax.swing.JButton();
         jButtonGirar = new javax.swing.JButton();
         Cerrar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
 
         setUndecorated(true);
         setResizable(false);
@@ -66,13 +72,21 @@ public class MenuEmergente extends javax.swing.JFrame{
             }
         });
 
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
             .addComponent(jButtonGirar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButtonDuplicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+            .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +95,9 @@ public class MenuEmergente extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonGirar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE))
+                .addComponent(jButtonEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Cerrar))
         );
 
         pack();
@@ -89,12 +105,11 @@ public class MenuEmergente extends javax.swing.JFrame{
 
     private void jButtonDuplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDuplicarActionPerformed
         // TODO add your handling code here:
-        JPanel panel2=elemGraf.getPanel();
-        Controlador control=elemGraf.getControlador();
-        String comp= elemGraf.getComponente();
-        String id=elemGraf.getId();
-        ElementoGrafico eG2= new ElementoGrafico(panel2,id
-                ,comp,control,elemGraf.getTitle().getText());
+        JPanel panel2 = elemGraf.getPanel();
+        Controlador control = elemGraf.getControlador();
+        String comp = elemGraf.getComponente();
+        String id = elemGraf.getId();
+        ElementoGrafico eG2 = new ElementoGrafico(panel2,id,comp,control,elemGraf.getTitle().getText());
         eG2.dibujarComponente();
         System.out.println(elemGraf.getId());
         cerrar(this);
@@ -108,8 +123,17 @@ public class MenuEmergente extends javax.swing.JFrame{
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
         // TODO add your handling code here:
         //this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        cerrar(this);
+        //cerrar(this);
+        this.dispose();
     }//GEN-LAST:event_CerrarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Elemento eliminado","éxito",JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+        this.remove(this);
+        //controlador.eliminarElemento(id);
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
     public void cerrar(MenuEmergente menu){
         menu.setVisible(false);
     }
@@ -157,6 +181,7 @@ public class MenuEmergente extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cerrar;
     private javax.swing.JButton jButtonDuplicar;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGirar;
     // End of variables declaration//GEN-END:variables
 }
