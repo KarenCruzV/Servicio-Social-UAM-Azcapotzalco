@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  */
 public class MedidorEspectro extends Componente{
-    
+    private char orientacion ='R';
 
     public MedidorEspectro(String id_nombre) {
         this.id_nombre=id_nombre;
@@ -317,9 +317,17 @@ public class MedidorEspectro extends Componente{
         return cna.getPartesReales();
     }
 
+    public char getOrientacion() {
+        return orientacion;
+    }
+    
+    public void setOrientacion(char orientacion) {
+        this.orientacion = orientacion;
+    }
+
     @Override
     public String toString() {
-        return super.toString(); 
+        return super.toString()+orientacion; 
     }
     
 }

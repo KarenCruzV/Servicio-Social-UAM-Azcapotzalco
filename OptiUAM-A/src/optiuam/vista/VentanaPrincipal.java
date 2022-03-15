@@ -117,6 +117,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("OptiUAM");
         setBackground(new java.awt.Color(153, 255, 255));
+        setExtendedState(6);
         setForeground(new java.awt.Color(0, 153, 51));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -125,7 +126,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         pnl_componentes.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_componentes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Componentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 0, 51))); // NOI18N
+        pnl_componentes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Componentes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 0, 51))); // NOI18N
 
         btn_fibra.setToolTipText("Optical Fiber");
         btn_fibra.setBorder(null);
@@ -272,7 +273,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         pnl_trabajo.setBackground(new java.awt.Color(255, 255, 255));
-        pnl_trabajo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Area de trabajo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 0, 51))); // NOI18N
+        pnl_trabajo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Area de trabajo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 0, 51))); // NOI18N
         pnl_trabajo.setOpaque(false);
 
         javax.swing.GroupLayout pnl_trabajoLayout = new javax.swing.GroupLayout(pnl_trabajo);

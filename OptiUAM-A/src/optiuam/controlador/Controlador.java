@@ -652,6 +652,21 @@ public class Controlador {
         aux.setOrientacion(orientacion);
     }
     
+    public void girarEspectro(String id){
+        MedidorEspectro aux = (MedidorEspectro) obtenerElemento(id);
+        char orientacion= aux.getOrientacion();
+        if(orientacion=='R')
+            orientacion='L';
+        else
+            orientacion='R';
+        for(int i=0;i < dibujos.size();i++){
+            if(dibujos.get(i).getId().compareTo(id)==0){
+                dibujos.get(i).girarEspectro(orientacion);
+            }
+        }
+        aux.setOrientacion(orientacion);
+    }
+    
     //Metodo para crear un archivo con los elementos creados en la maqueta.
     //crea un archivo de texto plano con extension .opt
     

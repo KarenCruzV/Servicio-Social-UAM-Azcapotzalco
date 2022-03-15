@@ -10,8 +10,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import optiuam.controlador.Controlador;
@@ -210,6 +208,14 @@ public class ElementoGrafico{
         Point aux = dibujo.getLocation();
         dibujo.setIcon(new ImageIcon("iconos/dibujo_conector"+orientaion+".png"));
             dibujo.setBounds(aux.x,aux.y,55,13);
+           //dibujo.updateUI();
+           //panel.updateUI();
+    }
+    
+    public void girarEspectro(char orientaion){
+        Point aux = dibujo.getLocation();
+        dibujo.setIcon(new ImageIcon("iconos/dibujo_espectro"+orientaion+".png"));
+            dibujo.setBounds(aux.x,aux.y,95,53);
            //dibujo.updateUI();
            //panel.updateUI();
     }
