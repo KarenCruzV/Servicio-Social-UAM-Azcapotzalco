@@ -117,28 +117,31 @@ public class MenuEmergente extends javax.swing.JFrame{
 
     private void jButtonGirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGirarActionPerformed
         // TODO add your handling code here:
-        System.out.println("Girar");
+        elemGraf.girarXd();
+        //System.out.println("Girar");
+        cerrar(this);
     }//GEN-LAST:event_jButtonGirarActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
         // TODO add your handling code here:
         //this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //cerrar(this);
-        this.dispose();
+        cerrar(this);
+        //this.dispose();
     }//GEN-LAST:event_CerrarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Elemento eliminado","éxito",JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
-        this.remove(this);
-        //controlador.eliminarElemento(id);
+        elemGraf.eliminarEle();
+        cerrar(this);
+        JOptionPane.showMessageDialog(null,"Empalme eliminado","éxito",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonEliminarActionPerformed
     public void cerrar(MenuEmergente menu){
         menu.setVisible(false);
+        this.dispose();
     }
     public void setControlador(ElementoGrafico elemento) {
         this.elemGraf = elemento;
+        
     }
     
     /**
